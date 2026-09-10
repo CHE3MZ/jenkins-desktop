@@ -24,6 +24,11 @@ const (
 
 const maxLogLines = 200
 
+// debugSplash locks the app on the splash screen for UI debugging.
+// While true, Jenkins is never started and the frontend never redirects.
+// Set to false for normal behavior.
+const debugSplash = true
+
 // App owns the Jenkins child process for the lifetime of the desktop app.
 type App struct {
 	ctx context.Context
@@ -60,6 +65,12 @@ func NewApp() *App {
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 	a.stopCh = make(chan struct{})
+
+	if debugSplash {
+		log.Print("debugSplash is on: staying on the splash screen, Jenkins will not start.")
+		a.setState(JenkinsStarting, "Splash preview — set debugSplash to false for normal startup.", 0)
+		return
+	}
 
 	command := envOr("JENKINS_COMMAND", "jenkins")
 	port := envOr("JENKINS_PORT", "8080")

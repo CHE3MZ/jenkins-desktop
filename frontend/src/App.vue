@@ -116,7 +116,7 @@ onUnmounted(() => {
   background: #ffffff;
   border: 1px solid #e3e6ea;
   border-radius: 12px;
-  box-shadow: 0 8px 28px rgba(15, 30, 45, 0.12);
+  box-shadow: 1px 2px 3px rgba(15, 30, 45, 0.2);
   padding: 36px 32px;
 }
 
@@ -149,7 +149,7 @@ h1 {
   background: #e9edf2;
   border: 3px solid #ffffff;
   border-radius: 6px;
-  box-shadow: 2px 2px 4px rgba(15, 30, 45, 0.28);
+  box-shadow: 1px 2px 3px rgba(15, 30, 45, 0.2);
   overflow: hidden;
   position: relative;
 }
