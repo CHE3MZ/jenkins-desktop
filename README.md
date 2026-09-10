@@ -1,7 +1,13 @@
+![alt text](assets/docs/jenkins-desktop.png)
+
 # Jenkins Desktop
 
-A desktop wrapper for Jenkins (Wails + Vue + TS). The Go backend spawns the
-system `jenkins` command on startup, owns the process, and kills it when the
+### A desktop wrapper for Jenkins. 
+
+---
+
+Stack : Wails + Vue + TS. 
+The Go backend spawns the system `jenkins` command on startup, owns the process, and kills it when the
 app closes. The frontend shows a splash screen while Jenkins boots, then hands
 the window over to the Jenkins web UI at `http://localhost:8080`.
 
