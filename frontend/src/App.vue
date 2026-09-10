@@ -81,7 +81,7 @@ onUnmounted(() => {
       <p class="url">{{ state.url }}</p>
 
       <div v-if="state.status !== 'error'" class="status">
-        <div class="spinner" aria-hidden="true"></div>
+        <div class="hbar" aria-hidden="true"><div class="hbar-fill"></div></div>
         <p>{{ redirected ? 'Opening Jenkins...' : state.message }}</p>
       </div>
 
@@ -111,55 +111,79 @@ onUnmounted(() => {
 }
 
 .card {
-  max-width: 560px;
+  max-width: 400px;
   width: 100%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #ffffff;
+  border: 1px solid #e3e6ea;
   border-radius: 12px;
-  padding: 40px 36px;
+  box-shadow: 0 8px 28px rgba(15, 30, 45, 0.12);
+  padding: 36px 32px;
 }
 
 h1 {
   margin: 0 0 4px;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #11181f;
 }
 
 .url {
   margin: 0 0 24px;
-  color: #9fb3c8;
+  color: #5b6b7c;
   font-size: 14px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
 }
 
 .status p {
-  margin: 16px 0 0;
-  color: #d7e3f0;
+  margin: 20px 0 0;
+  color: #333e4c;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
 }
 
-.spinner {
-  width: 36px;
-  height: 36px;
-  margin: 0 auto;
-  border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.2);
-  border-top-color: #fff;
-  animation: spin 0.8s linear infinite;
+.hbar {
+  height: 18px;
+  margin: 4px auto 0;
+  background: #e9edf2;
+  border: 3px solid #ffffff;
+  border-radius: 6px;
+  box-shadow: 2px 2px 4px rgba(15, 30, 45, 0.28);
+  overflow: hidden;
+  position: relative;
 }
 
-@keyframes spin {
+.hbar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 32%;
+  background: #2563eb;
+  border-radius: 3px;
+  animation: hslide 1.2s ease-in-out infinite;
+}
+
+@keyframes hslide {
+  from {
+    transform: translateX(-110%);
+  }
   to {
-    transform: rotate(360deg);
+    transform: translateX(320%);
   }
 }
 
 .error-title {
   font-weight: 700;
-  color: #ff9d9d;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #b3261e;
 }
 
 .error p {
-  color: #d7e3f0;
+  color: #333e4c;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
 }
 
 .actions {
@@ -174,20 +198,24 @@ h1 {
   border-radius: 6px;
   padding: 8px 20px;
   font-size: 14px;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   cursor: pointer;
-  background: #fff;
-  color: #1b2636;
+  background: #11181f;
+  color: #fff;
 }
 
 .btn.secondary {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: #fff;
+  color: #11181f;
+  border: 1px solid #11181f;
 }
 
 .logs {
   text-align: left;
-  background: rgba(0, 0, 0, 0.45);
+  background: #f1f3f5;
+  color: #333e4c;
+  border: 1px solid #e3e6ea;
   border-radius: 8px;
   padding: 12px;
   max-height: 220px;
