@@ -17,14 +17,17 @@ func main() {
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:  "jenkins",
-		Width:  860,
-		Height: 620,
+		Title:     "Jenkins Desktop",
+		Width:     860,
+		Height:    620,
+		MinWidth:  860,
+		MinHeight: 620,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
-		BackgroundColour: &options.RGBA{R: 15, G: 15, B: 15, A: 1},
+		BackgroundColour: &options.RGBA{R: 20, G: 20, B: 20, A: 1},
 		OnStartup:        app.startup,
+		OnShutdown:       app.shutdown,
 		Bind: []interface{}{
 			app,
 		},

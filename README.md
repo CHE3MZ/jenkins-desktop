@@ -1,11 +1,21 @@
-# README
+# Jenkins Desktop
 
-## About
+A desktop wrapper for Jenkins (Wails + Vue + TS). The Go backend spawns the
+system `jenkins` command on startup, owns the process, and kills it when the
+app closes. The frontend shows a splash screen while Jenkins boots, then hands
+the window over to the Jenkins web UI at `http://localhost:8080`.
 
-This is the official Wails Vue-TS template.
+Requirements: the `jenkins` command must be on your `PATH`
+(e.g. `brew install jenkins`).
 
-You can configure the project by editing `wails.json`. More information about the project settings can be found
-here: https://wails.io/docs/reference/project-config
+Optional env vars:
+
+- `JENKINS_COMMAND` — binary to run (default `jenkins`)
+- `JENKINS_PORT` — HTTP port (default `8080`)
+- `JENKINS_ARGS` — extra args appended to the command
+
+If Jenkins is already running on the port when the app starts, the app
+attaches to it instead of spawning a new instance (and won't kill it on exit).
 
 ## Live Development
 
@@ -17,3 +27,6 @@ to this in your browser, and you can call your Go code from devtools.
 ## Building
 
 To build a redistributable, production mode package, use `wails build`.
+
+Note: on newer Xcode versions the link needs an extra framework, so build
+with `CGO_LDFLAGS="-framework UniformTypeIdentifiers" wails build`.
