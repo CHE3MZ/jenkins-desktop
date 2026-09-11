@@ -69,6 +69,12 @@ func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 	a.stopCh = make(chan struct{})
 
+	// Apps launched from Finder do not inherit the shell PATH, so a
+	// Homebrew-installed Jenkins would be invisible to LookPath below.
+	// (This is why `wails dev` works from a terminal but the packaged
+	// .app reports "command not found".)
+	ensureGuiPath()
+
 	port := envOr("JENKINS_PORT", "8080")
 	a.url = "http://localhost:" + port
 
@@ -106,7 +112,10 @@ func (a *App) startup(ctx context.Context) {
 
 	path, err := exec.LookPath(command)
 	if err != nil {
-		a.setState(JenkinsError, fmt.Sprintf("Could not find the %q command. Install Jenkins and make sure it is on your PATH.", command), 0)
+		a.setState(JenkinsError, fmt.Sprintf(
+			"Could not find the %q command (PATH=%s). Install Jenkins and make sure it is on your PATH, "+
+				"or set JENKINS_COMMAND to its full path.",
+			command, os.Getenv("PATH")), 0)
 		return
 	}
 
@@ -360,4 +369,28 @@ func envOr(key, fallback string) string {
 		return v
 	}
 	return fallback
+}
+
+// ensureGuiPath prepends well-known Homebrew locations to PATH when they
+// exist but are missing. A .app launched from Finder never sees the shell
+// PATH (~/.zshrc is not loaded), so without this a brew-installed Jenkins
+// is unresolvable even though it works fine from a terminal.
+func ensureGuiPath() {
+	for _, dir := range []string{"/opt/homebrew/bin", "/usr/local/bin"} {
+		st, err := os.Stat(dir)
+		if err != nil || !st.IsDir() {
+			continue
+		}
+		found := false
+		for _, p := range strings.Split(os.Getenv("PATH"), string(os.PathListSeparator)) {
+			if p == dir {
+				found = true
+				break
+			}
+		}
+		if !found {
+			log.Printf("Adding %s to PATH for Jenkins lookup.", dir)
+			os.Setenv("PATH", dir+string(os.PathListSeparator)+os.Getenv("PATH"))
+		}
+	}
 }
