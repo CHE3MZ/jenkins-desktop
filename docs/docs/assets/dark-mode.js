@@ -6,15 +6,19 @@
 
   var STORAGE_KEY = 'jenkins-desktop-theme';
 
-  function preferred() {
+  function stored() {
     try {
-      var stored = window.localStorage.getItem(STORAGE_KEY);
-      if (stored === 'dark' || stored === 'light') {
-        return stored;
+      var value = window.localStorage.getItem(STORAGE_KEY);
+      if (value === 'dark' || value === 'light') {
+        return value;
       }
     } catch (e) {
       /* storage unavailable (e.g. file://), fall through to OS default */
     }
+    return null;
+  }
+
+  function osDefault() {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       return 'dark';
     }
@@ -22,7 +26,15 @@
   }
 
   function apply(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
+    if (theme === 'dark' || theme === 'light') {
+      /* Explicit choice: pin it so it beats the OS media query. */
+      document.documentElement.setAttribute('data-theme', theme);
+    } else {
+      /* No stored choice: leave the attribute off so the
+         prefers-color-scheme media query decides from first paint. */
+      document.documentElement.removeAttribute('data-theme');
+      theme = osDefault();
+    }
     var icon = document.querySelector('#jd-theme-toggle i');
     if (icon) {
       icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
@@ -34,7 +46,8 @@
   }
 
   function toggle() {
-    var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    var current = document.documentElement.getAttribute('data-theme') || osDefault();
+    var next = current === 'dark' ? 'light' : 'dark';
     try {
       window.localStorage.setItem(STORAGE_KEY, next);
     } catch (e) {
@@ -44,7 +57,7 @@
   }
 
   /* Set the theme as early as possible to avoid a light-mode flash. */
-  apply(preferred());
+  apply(stored());
 
   document.addEventListener('DOMContentLoaded', function () {
     if (document.getElementById('jd-theme-toggle')) {
@@ -68,6 +81,6 @@
     a.appendChild(document.createTextNode(' Theme'));
     li.appendChild(a);
     bar.appendChild(li);
-    apply(preferred());
+    apply(stored());
   });
 })();

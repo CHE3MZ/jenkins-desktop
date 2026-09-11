@@ -1,10 +1,15 @@
-![alt text](assets/docs/jenkins-desktop.png)
+<img src="assets/jenkins_logo.png" alt="Jenkins logo" width="192" />
 
 # Jenkins Desktop
 
 ### A simple desktop wrapper for Jenkins. 
 
-Jenkins Desktop is a simple desktop wrapper for Jenkins that is currently compatible with Homebrew installations of Jenkins on macOS.
+#### Jenkins Desktop is a simple desktop wrapper for Jenkins that is currently compatible with Homebrew installations of Jenkins on macOS.
+
+#### __Check out the [official documentation](http://localhost:8000) to get started.__ 
+// REPLACE THE LINK WITH THE WEBSITE LINK DONT FORGET
+
+---
 
 The application upon launch will attempt to run the "jenkins" command in a shell and open up the localhost URL of Jenkins and display it to the user. If Jenkins is already running, it will skip the first part (trying to run the Jenkins command).
 
@@ -19,6 +24,8 @@ brew services start jenkins
 in your terminal and you won't have to worry about Jenkins (probably), as it will keep on running in the background and will be managed by the brew services service.
 you could also run the "jenkins" command directly in your terminal, but that would mean that you'd have to keep the terminal tab open in order to keep Jenkins running, as closing the tab would also kill the Jenkins process.
 
----
+## License
 
-please visit [docs](http://localhost:8000 REPLACE THIS WITH THE ACTUAL LINK LATER DONT FORGET) for more information on the project.
+The __Jenkins Desktop__ project itself is licensed under the __[MIT license](LICENSE)__
+
+See the licensing for the __Jenkins Project__ __[Here](https://github.com/openshift/jenkins/blob/master/LICENSE)__.
