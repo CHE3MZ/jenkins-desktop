@@ -5,11 +5,13 @@ repo_url: "https://github.com/CHE3MZ/jenkins-desktop"
 
 nav:
   - Home: index.md
-  - Getting Started: getting-started.md
-  - Configuration: configuration.md
-  - Building from Source: building.md
-  - How It Works: how-it-works.md
-  - Troubleshooting: troubleshooting.md
+  - Getting Started:
+    - Installation: getting-started.md
+    - Building from Source: building.md
+    - How It Works: how-it-works.md
+  - Configuration:
+    - Options & Ports: configuration.md
+    - Troubleshooting: troubleshooting.md
 
 extra_css:
   - assets/dark-mode.css
@@ -20,6 +22,6 @@ extra_javascript:
 theme:
   name: null
   custom_dir: theme
-  colorscheme: github
   highlightjs: true
+  disable_nav_previous_next: true
   disable_footer: true

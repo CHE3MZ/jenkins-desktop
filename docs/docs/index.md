@@ -14,10 +14,12 @@ For long builds, the recommended setup is to run Jenkins independently (e.g. `br
 
 ## Contents
 
-- [Getting Started](getting-started.md) — install, first launch, daily use
-- [Configuration](configuration.md) — environment variables and ports
-- [Building from Source](building.md) — dev mode and packaging the `.app`
-- [How It Works](how-it-works.md) — backend lifecycle and frontend handoff
-- [Troubleshooting](troubleshooting.md) — common problems and fixes
+- **Getting Started**
+    - [Installation](getting-started.md) — install, first launch, daily use
+    - [Building from Source](building.md) — dev mode and packaging the `.app`
+    - [How It Works](how-it-works.md) — backend lifecycle and frontend handoff
+- **Configuration**
+    - [Options & Ports](configuration.md) — environment variables and ports
+    - [Troubleshooting](troubleshooting.md) — common problems and fixes
 
 > **Compatibility:** built and tested on macOS with the Homebrew Jenkins installation. The Go code also compiles for Windows, but there is usually no `jenkins` command on `PATH` there — see [Configuration](configuration.md#windows-notes).
