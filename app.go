@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -86,7 +87,18 @@ func (a *App) startup(ctx context.Context) {
 
 	command := envOr("JENKINS_COMMAND", "jenkins")
 
-	args := []string{"--httpPort=" + port}
+	if !validPort(port) {
+		a.setState(JenkinsError, fmt.Sprintf("Invalid JENKINS_PORT %q: must be a number between 1 and 65535.", port), 0)
+		return
+	}
+
+	// Bind loopback only by default: this is a local desktop wrapper, so
+	// there is no reason to expose Jenkins to the whole network (which is
+	// Winstone's default). Override with JENKINS_LISTEN_ADDRESS=0.0.0.0
+	// if LAN access is really wanted.
+	listen := envOr("JENKINS_LISTEN_ADDRESS", "127.0.0.1")
+
+	args := []string{"--httpPort=" + port, "--httpListenAddress=" + listen}
 	if extra := os.Getenv("JENKINS_ARGS"); extra != "" {
 		args = append(args, strings.Fields(extra)...)
 	}
@@ -375,6 +387,15 @@ func envOr(key, fallback string) string {
 		return v
 	}
 	return fallback
+}
+
+// validPort reports whether s is a usable TCP port number. The value is
+// concatenated into Jenkins flags and the UI URL, so rejecting garbage
+// early keeps both well-formed (there is no shell involved at any point,
+// exec runs the binary directly).
+func validPort(s string) bool {
+	n, err := strconv.Atoi(s)
+	return err == nil && n >= 1 && n <= 65535
 }
 
 // ensureGuiPath prepends well-known Homebrew locations to PATH when they

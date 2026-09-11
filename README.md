@@ -19,6 +19,8 @@ Optional env vars:
 - `JENKINS_COMMAND` — binary to run (default `jenkins`)
 - `JENKINS_PORT` — HTTP port (default `8080`)
 - `JENKINS_ARGS` — extra args appended to the command (split on whitespace)
+- `JENKINS_LISTEN_ADDRESS` — interface Jenkins binds to (default `127.0.0.1`,
+  i.e. this machine only; Jenkins itself defaults to all interfaces)
 
 If Jenkins is already running on the port when the app starts, the app
 attaches to it instead of spawning a new instance (and won't kill it on exit).
