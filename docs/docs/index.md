@@ -1,6 +1,6 @@
-<img src="images/jenkins-logo.svg" alt="Jenkins logo" width="128" />
+# <img src="images/jenkins-logo.svg" alt="Jenkins logo" width="128" /> Jenkins Desktop
 
-# Jenkins Desktop
+---
 
 A desktop wrapper for Jenkins. The app launches the system `jenkins` command, owns the process, and displays the Jenkins web UI in a native window — no browser tab required.
 
