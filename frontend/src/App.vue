@@ -226,13 +226,14 @@ onUnmounted(() => {
 .app-progress-bar {
   --color: var(--accent-color);
   height: 12px;
-  width: 100%;
+  width: 50%;
   padding: 2px;
   border-radius: 6px;
+  box-shadow: 0px 0px 2px rgba(200,200,200,0.65);
   box-sizing: border-box;
   /* Jenkins uses --text-color-secondary at 25% here; bumped to 45% so the
      full-width track stays visible against the page background. */
-  background-color: rgba(99, 130, 173, 0.45);
+  background-color: rgba(99, 130, 173, 0.4);
   background-image: linear-gradient(
     -45deg,
     var(--background) 25%,
@@ -244,7 +245,7 @@ onUnmounted(() => {
     transparent
   );
   background-size: 25px 25px;
-  animation: progress-bar-stripes 5s linear infinite;
+  animation: progress-bar-stripes 4s linear infinite;
   overflow: hidden;
   position: relative;
 }
@@ -256,6 +257,7 @@ onUnmounted(() => {
   left: 0;
   width: 30%;
   background-color: var(--color);
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.05);
   display: block;
   border-radius: 4px;
   animation: progress-bar-slide 1.4s ease-in-out infinite;
