@@ -314,7 +314,7 @@ func (a *App) probe() probeResult {
 	if err != nil {
 		return res
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 	res.listening = true
 	res.code = resp.StatusCode
 	if resp.Header.Get("X-Jenkins") != "" || resp.Header.Get("X-Hudson") != "" {
@@ -389,8 +389,12 @@ func ensureGuiPath() {
 			}
 		}
 		if !found {
-			log.Printf("Adding %s to PATH for Jenkins lookup.", dir)
-			os.Setenv("PATH", dir+string(os.PathListSeparator)+os.Getenv("PATH"))
+			newPath := dir + string(os.PathListSeparator) + os.Getenv("PATH")
+			if err := os.Setenv("PATH", newPath); err != nil {
+				log.Printf("Could not add %s to PATH: %v", dir, err)
+				continue
+			}
+			log.Printf("Added %s to PATH for Jenkins lookup.", dir)
 		}
 	}
 }

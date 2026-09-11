@@ -101,7 +101,7 @@ onUnmounted(() => {
 
       <template v-if="state.status !== 'error'">
         <h1 class="loading">
-          <p class="jenkins-spinner">{{ redirected ? 'Opening Jenkins...' : state.message }}</p>
+          <span class="jenkins-spinner">{{ redirected ? 'Opening Jenkins...' : state.message }}</span>
         </h1>
         <div
           class="app-progress-bar app-progress-bar--unknown app-progress-bar--animate"
@@ -118,7 +118,7 @@ onUnmounted(() => {
 
       <template v-else>
         <h1 class="loading">
-          <p class="error-title">Jenkins failed to start</p>
+          <div class="error-title">Jenkins failed to start</div>
         </h1>
         <div class="restarting">{{ state.message }}</div>
         <div class="actions">
@@ -207,7 +207,8 @@ onUnmounted(() => {
   color: var(--text-color);
 }
 
-.loading p {
+.loading span,
+.loading div {
   font-weight: var(--font-bold-weight);
   font-size: 1.125rem;
 }
@@ -263,8 +264,8 @@ onUnmounted(() => {
   border-radius: 6px;
   box-shadow: 0px 0px 2px rgba(200,200,200,0.65);
   box-sizing: border-box;
-  /* Jenkins uses --text-color-secondary at 25% here; bumped to 45% so the
-     full-width track stays visible against the page background. */
+  /* Jenkins uses --text-color-secondary at 25% here; raised to 40% so the
+     track stays visible against the page background. */
   background-color: rgba(99, 130, 173, 0.4);
   background-image: linear-gradient(
     -45deg,
