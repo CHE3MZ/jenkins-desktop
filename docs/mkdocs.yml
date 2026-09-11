@@ -13,6 +13,7 @@ nav:
   - Configuration:
     - Options & Ports: configuration.md
     - Troubleshooting: troubleshooting.md
+  - Contributing: contributing.md
 
 extra_css:
   - assets/dark-mode.css
