@@ -1,4 +1,14 @@
 site_name: Jenkins Desktop
+site_description: Documentation for Jenkins Desktop, a desktop wrapper that runs Jenkins and displays it in a native window.
+site_author: CHE3MZ
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Configuration: configuration.md
+  - Building from Source: building.md
+  - How It Works: how-it-works.md
+  - Troubleshooting: troubleshooting.md
 
 theme:
   name: null
