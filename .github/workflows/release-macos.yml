@@ -59,7 +59,7 @@ jobs:
         run: |
           cd build/bin
           rm -f *.dmg
-          create-dmg 'Jenkins Desktop.app' --overwrite --no-version-in-filename
+          create-dmg 'Jenkins Desktop.app' --overwrite --no-version-in-filename --no-code-sign
           ls -la *.dmg
 
       - name: Determine version
