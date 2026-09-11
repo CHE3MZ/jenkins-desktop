@@ -1,6 +1,7 @@
 site_name: Jenkins Desktop
 site_description: Documentation for Jenkins Desktop, a desktop wrapper that runs Jenkins and displays it in a native window.
 site_author: CHE3MZ
+repo_url: "https://github.com/CHE3MZ/jenkins-desktop"
 
 nav:
   - Home: index.md
@@ -13,4 +14,6 @@ nav:
 theme:
   name: null
   custom_dir: theme
+  colorscheme: github
   highlightjs: true
+  disable_footer: true
