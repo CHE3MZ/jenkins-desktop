@@ -20,8 +20,8 @@ func main() {
 		Title:     "Jenkins Desktop",
 		Width:     860,
 		Height:    620,
-		MinWidth:  860,
-		MinHeight: 620,
+		MinWidth:  640,
+		MinHeight: 480,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
