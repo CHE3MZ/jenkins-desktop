@@ -1,0 +1,113 @@
+name: release-macos
+
+# Manual only: run from the Actions tab ("Run workflow").
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Exact version to release (e.g. v1.2.3). Leave empty to auto-bump.'
+        required: false
+        default: ''
+      bump:
+        description: 'Which part to bump when version is empty'
+        required: false
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history + tags, needed to compute the next version
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install Wails
+        run: |
+          go install github.com/wailsapp/wails/v2/cmd/wails@latest
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+
+      - name: Build
+        env:
+          CGO_LDFLAGS: -framework UniformTypeIdentifiers
+        run: wails build
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install create-dmg
+        run: npm install --global create-dmg
+
+      - name: Create DMG
+        run: |
+          cd build/bin
+          rm -f *.dmg
+          create-dmg 'Jenkins Desktop.app' --overwrite --no-version-in-filename
+          ls -la *.dmg
+
+      - name: Determine version
+        id: version
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+          INPUT_BUMP: ${{ inputs.bump }}
+        run: |
+          set -euo pipefail
+          if [ -n "$INPUT_VERSION" ]; then
+            TAG="$INPUT_VERSION"
+            if ! [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "error: version must look like v1.2.3, got '$TAG'" >&2
+              exit 1
+            fi
+            if git rev-parse "$TAG" >/dev/null 2>&1; then
+              echo "error: tag '$TAG' already exists" >&2
+              exit 1
+            fi
+          else
+            LATEST=$(git tag --list 'v*.*.*' --sort=-v:refname | head -n 1 || true)
+            if [ -z "$LATEST" ]; then
+              echo "no version tags found, starting from v0.0.0"
+              LATEST="v0.0.0"
+            fi
+            echo "latest tag: $LATEST"
+            VER="${LATEST#v}"
+            IFS=. read -r MAJOR MINOR PATCH <<< "$VER"
+            case "$INPUT_BUMP" in
+              major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+              minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+              *) PATCH=$((PATCH + 1)) ;;
+            esac
+            TAG="v$MAJOR.$MINOR.$PATCH"
+            while git rev-parse "$TAG" >/dev/null 2>&1; do
+              PATCH=$((PATCH + 1))
+              TAG="v$MAJOR.$MINOR.$PATCH"
+            done
+          fi
+          echo "releasing: $TAG"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          TAG='${{ steps.version.outputs.tag }}'
+          git tag "$TAG"
+          git push origin "$TAG"
+          gh release create "$TAG" --title "$TAG" --generate-notes "build/bin/Jenkins Desktop.dmg"
