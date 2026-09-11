@@ -1,0 +1,6 @@
+site_name: Jenkins Desktop
+
+theme:
+  name: null
+  custom_dir: theme
+  highlightjs: true
