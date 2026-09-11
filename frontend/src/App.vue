@@ -80,6 +80,7 @@ onUnmounted(() => {
       <div class="logo">
         <img src="./assets/images/jenkins-logo.svg" alt="Jenkins logo" />
       </div>
+      <div class="brand">Jenkins Desktop</div>
 
       <template v-if="state.status !== 'error'">
         <h1 class="loading">
@@ -142,6 +143,16 @@ onUnmounted(() => {
 
 .simple-page .logo > img {
   height: 140px;
+}
+
+.brand {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: var(--text-color);
+  text-align: center;
+  margin: 0;
 }
 
 /* Mirrors .app-jenkins-booting in reference/src/main/scss/simple-page.scss */

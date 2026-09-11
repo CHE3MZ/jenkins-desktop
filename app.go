@@ -66,6 +66,9 @@ func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 	a.stopCh = make(chan struct{})
 
+	port := envOr("JENKINS_PORT", "8080")
+	a.url = "http://localhost:" + port
+
 	if debugSplash {
 		log.Print("debugSplash is on: staying on the splash screen, Jenkins will not start.")
 		a.setState(JenkinsStarting, "Splash preview — set debugSplash to false for normal startup.", 0)
@@ -73,8 +76,6 @@ func (a *App) startup(ctx context.Context) {
 	}
 
 	command := envOr("JENKINS_COMMAND", "jenkins")
-	port := envOr("JENKINS_PORT", "8080")
-	a.url = "http://localhost:" + port
 
 	args := []string{"--httpPort=" + port}
 	if extra := os.Getenv("JENKINS_ARGS"); extra != "" {
