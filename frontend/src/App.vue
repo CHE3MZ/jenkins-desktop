@@ -22,6 +22,7 @@ const showLogs = ref(false)
 const redirected = ref(false)
 
 let timer: number | undefined
+let redirectTimer: number | undefined
 
 async function refreshLogs() {
   try {
@@ -45,11 +46,26 @@ async function poll() {
     // Hand the whole window over to the Jenkins web UI. Jenkins sends
     // X-Frame-Options: sameorigin, so it cannot live inside an iframe —
     // a top-level navigation displays it natively instead.
-    setTimeout(() => window.location.replace(state.value.url), 500)
+    redirectTimer = window.setTimeout(async () => {
+      // Re-check right before navigating: Jenkins may have died since
+      // the last poll, and a blind redirect would land on an error page.
+      try {
+        const fresh = (await JenkinsState()) as JenkinsStatus
+        if (fresh.status === 'ready') {
+          window.location.replace(fresh.url)
+          return
+        }
+      } catch {
+        // backend unreachable, fall through and resume polling
+      }
+      redirected.value = false
+      poll()
+      timer = window.setInterval(poll, 750)
+    }, 500)
     return
   }
 
-  if (state.value.status === 'error' && showLogs.value) {
+  if (showLogs.value) {
     await refreshLogs()
   }
 }
@@ -71,6 +87,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   if (timer !== undefined) window.clearInterval(timer)
+  if (redirectTimer !== undefined) window.clearTimeout(redirectTimer)
 })
 </script>
 
@@ -93,6 +110,10 @@ onUnmounted(() => {
           <span></span><span></span>
         </div>
         <div class="restarting">{{ state.url }}</div>
+        <button class="jenkins-button logs-toggle" @click="toggleLogs">
+          {{ showLogs ? 'Hide logs' : 'View logs' }}
+        </button>
+        <pre v-if="showLogs" class="logs">{{ logs || '(no output yet)' }}</pre>
       </template>
 
       <template v-else>
@@ -358,5 +379,11 @@ onUnmounted(() => {
   line-height: 1.5;
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.logs-toggle {
+  min-height: 0;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
 }
 </style>

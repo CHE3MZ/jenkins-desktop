@@ -18,10 +18,27 @@ Optional env vars:
 
 - `JENKINS_COMMAND` — binary to run (default `jenkins`)
 - `JENKINS_PORT` — HTTP port (default `8080`)
-- `JENKINS_ARGS` — extra args appended to the command
+- `JENKINS_ARGS` — extra args appended to the command (split on whitespace)
 
 If Jenkins is already running on the port when the app starts, the app
 attaches to it instead of spawning a new instance (and won't kill it on exit).
+The same happens if our child exits but a Jenkins is answering on the port
+(e.g. two app instances started at once) — the app attaches to the survivor.
+
+First run: Jenkins prints the initial admin password to its log (use
+"View logs" on the splash screen) and stores it at
+`~/.jenkins/secrets/initialAdminPassword`.
+
+Cleanup: closing the window, Cmd+Q, SIGTERM and SIGINT all stop the owned
+Jenkins gracefully. Only an uncatchable kill (`kill -9`) or a crash can leave
+it behind — recover with `pkill -f jenkins.war`.
+
+Debugging the splash screen: set `const debugSplash = true` in `app.go` and
+the app will stay on the splash without starting Jenkins.
+
+Windows: the code builds for Windows, but there is usually no `jenkins`
+command on `PATH` there — point `JENKINS_COMMAND` at your launcher
+(e.g. `JENKINS_COMMAND=java` with `JENKINS_ARGS=-jar C:\path\to\jenkins.war`).
 
 ## Live Development
 

@@ -22,12 +22,15 @@ const (
 	JenkinsError    = "error"
 )
 
-const maxLogLines = 200
+// maxLogLines caps the in-memory Jenkins output. Kept generous so the
+// first-boot admin password (printed early by Jenkins) is still in the
+// tail when the UI becomes reachable.
+const maxLogLines = 500
 
 // debugSplash locks the app on the splash screen for UI debugging.
 // While true, Jenkins is never started and the frontend never redirects.
 // Set to false for normal behavior.
-const debugSplash = true
+const debugSplash = false
 
 // App owns the Jenkins child process for the lifetime of the desktop app.
 type App struct {
@@ -169,6 +172,18 @@ func (a *App) startup(ctx context.Context) {
 		default:
 		}
 		if owned && status != JenkinsError {
+			// Our child died. Before reporting failure, check whether a
+			// Jenkins is actually listening (e.g. a second app instance
+			// won a startup port race). If so, attach to it instead.
+			if probed := a.probe(); probed.isJenkins {
+				a.mu.Lock()
+				a.owned = false
+				a.mu.Unlock()
+				log.Printf("Our Jenkins process exited, but Jenkins is answering at %s — attaching instead.", a.url)
+				a.setState(JenkinsStarting, "Jenkins is already running.", 0)
+				a.watchReadiness()
+				return
+			}
 			msg := "Jenkins exited unexpectedly."
 			if err != nil {
 				msg = fmt.Sprintf("Jenkins exited unexpectedly: %v", err)
