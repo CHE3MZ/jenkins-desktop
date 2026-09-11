@@ -1,13 +1,19 @@
 {
   "$schema": "https://wails.io/schemas/config.v2.json",
-  "name": "jenkins",
-  "outputfilename": "jenkins",
+  "name": "Jenkins Desktop",
+  "outputfilename": "Jenkins Desktop",
+  "info": {
+    "companyName": "CHE3MZ",
+    "productName": "Jenkins Desktop",
+    "productVersion": "1.0.0",
+    "copyright": "Copyright (c) 2026 CHE3MZ",
+    "comments": "Desktop wrapper for Jenkins"
+  },
   "frontend:install": "bun install",
   "frontend:build": "bun run build",
   "frontend:dev:watcher": "bun run dev",
   "frontend:dev:serverUrl": "auto",
   "author": {
-    "name": "CHE3MZ",
-    "email": "deadbylights@gmail.com"
+    "name": "CHE3MZ"
   }
 }
