@@ -156,6 +156,9 @@ func (a *App) startup(ctx context.Context) {
 		for scanner.Scan() {
 			a.appendLog(scanner.Text())
 		}
+		if err := scanner.Err(); err != nil {
+			log.Printf("Error reading Jenkins stdout: %v", err)
+		}
 	}()
 	a.stopWg.Add(1)
 	go func() {
@@ -164,6 +167,9 @@ func (a *App) startup(ctx context.Context) {
 		scanner.Buffer(make([]byte, 64*1024), 1024*1024)
 		for scanner.Scan() {
 			a.appendLog(scanner.Text())
+		}
+		if err := scanner.Err(); err != nil {
+			log.Printf("Error reading Jenkins stderr: %v", err)
 		}
 	}()
 
