@@ -1,0 +1,242 @@
+/* Dark mode for the docs site. Activated by setting
+   data-theme="dark" on <html> (see assets/dark-mode.js).
+   The theme directory itself is untouched. */
+
+html[data-theme="dark"] body {
+  background-color: #16181d;
+  color: #c9d1d9;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6 {
+  color: #f0f3f6;
+}
+
+html[data-theme="dark"] a {
+  color: #6aa6e0;
+}
+
+html[data-theme="dark"] a:hover,
+html[data-theme="dark"] a:focus {
+  color: #8fbef0;
+}
+
+html[data-theme="dark"] hr,
+html[data-theme="dark"] footer > hr {
+  border-color: #30363d;
+}
+
+html[data-theme="dark"] footer {
+  color: #8b949e;
+}
+
+/* Top navigation */
+html[data-theme="dark"] .navbar-default {
+  background-color: #101216;
+  border-bottom-color: #21262d;
+}
+
+html[data-theme="dark"] .navbar-default .navbar-brand,
+html[data-theme="dark"] .navbar-default .navbar-nav > li > a {
+  color: #c9d1d9;
+}
+
+html[data-theme="dark"] .navbar-default .navbar-nav > li > a:hover,
+html[data-theme="dark"] .navbar-default .navbar-nav > li > a:focus,
+html[data-theme="dark"] .navbar-default .navbar-nav > .active > a,
+html[data-theme="dark"] .navbar-default .navbar-nav > .open > a {
+  color: #ffffff;
+  background-color: #21262d;
+}
+
+html[data-theme="dark"] .navbar-default .navbar-toggle {
+  border-color: #30363d;
+}
+
+html[data-theme="dark"] .navbar-default .navbar-toggle .icon-bar {
+  background-color: #c9d1d9;
+}
+
+html[data-theme="dark"] .dropdown-menu {
+  background-color: #1e2228;
+  border-color: #30363d;
+}
+
+html[data-theme="dark"] .dropdown-menu > li > a {
+  color: #c9d1d9;
+}
+
+html[data-theme="dark"] .dropdown-menu > li > a:hover,
+html[data-theme="dark"] .dropdown-menu > li > a:focus {
+  color: #ffffff;
+  background-color: #30363d;
+}
+
+html[data-theme="dark"] .dropdown-menu .divider {
+  background-color: #30363d;
+}
+
+/* Side table of contents */
+html[data-theme="dark"] .bs-sidenav {
+  background-image: none;
+}
+
+html[data-theme="dark"] .bs-sidenav .nav > li > a {
+  color: #8b949e;
+}
+
+html[data-theme="dark"] .bs-sidenav .nav > li > a:hover,
+html[data-theme="dark"] .bs-sidenav .nav > li > a:focus,
+html[data-theme="dark"] .bs-sidenav .nav > .active > a {
+  color: #f0f3f6;
+  background-color: transparent;
+  border-right-color: #6aa6e0;
+}
+
+/* Code, wells, tables */
+html[data-theme="dark"] pre,
+html[data-theme="dark"] code,
+html[data-theme="dark"] .well,
+html[data-theme="dark"] .btn-default {
+  background-color: #1e2228;
+  border-color: #30363d;
+  color: #c9d1d9;
+}
+
+html[data-theme="dark"] .table-striped > tbody > tr:nth-child(2n+1) > td,
+html[data-theme="dark"] .table-striped > tbody > tr:nth-child(2n+1) > th {
+  background-color: #1b1f25;
+}
+
+html[data-theme="dark"] .table > thead > tr > th,
+html[data-theme="dark"] .table > tbody > tr > td,
+html[data-theme="dark"] .table > tbody > tr > th {
+  border-color: #30363d;
+}
+
+html[data-theme="dark"] blockquote {
+  border-left-color: #30363d;
+  color: #8b949e;
+}
+
+html[data-theme="dark"] kbd {
+  background-color: #1e2228;
+  color: #c9d1d9;
+  box-shadow: inset 0 -1px 0 #30363d;
+}
+
+/* Search modal */
+html[data-theme="dark"] .modal-content {
+  background-color: #1e2228;
+  border-color: #30363d;
+  color: #c9d1d9;
+}
+
+html[data-theme="dark"] .modal-header,
+html[data-theme="dark"] .modal-footer {
+  border-color: #30363d;
+}
+
+html[data-theme="dark"] .modal-content .close {
+  color: #c9d1d9;
+  opacity: 0.7;
+}
+
+html[data-theme="dark"] #mkdocs-search-query {
+  color: #f0f3f6;
+  background-color: #16181d;
+  border-color: #30363d;
+}
+
+html[data-theme="dark"] .modal-body a {
+  color: #6aa6e0;
+}
+
+/* Syntax highlighting (overrides the light github theme) */
+html[data-theme="dark"] .hljs {
+  color: #c9d1d9;
+  background: transparent;
+}
+
+html[data-theme="dark"] .hljs-comment,
+html[data-theme="dark"] .hljs-quote {
+  color: #8b949e;
+  font-style: italic;
+}
+
+html[data-theme="dark"] .hljs-keyword,
+html[data-theme="dark"] .hljs-selector-tag,
+html[data-theme="dark"] .hljs-subst {
+  color: #ff7b72;
+}
+
+html[data-theme="dark"] .hljs-number,
+html[data-theme="dark"] .hljs-literal,
+html[data-theme="dark"] .hljs-variable,
+html[data-theme="dark"] .hljs-template-variable,
+html[data-theme="dark"] .hljs-tag .hljs-attr {
+  color: #79c0ff;
+}
+
+html[data-theme="dark"] .hljs-string,
+html[data-theme="dark"] .hljs-doctag {
+  color: #a5d6ff;
+}
+
+html[data-theme="dark"] .hljs-title,
+html[data-theme="dark"] .hljs-section,
+html[data-theme="dark"] .hljs-selector-id {
+  color: #d2a8ff;
+}
+
+html[data-theme="dark"] .hljs-type,
+html[data-theme="dark"] .hljs-class .hljs-title {
+  color: #ffa657;
+}
+
+html[data-theme="dark"] .hljs-tag,
+html[data-theme="dark"] .hljs-name,
+html[data-theme="dark"] .hljs-attribute {
+  color: #7ee787;
+}
+
+html[data-theme="dark"] .hljs-regexp,
+html[data-theme="dark"] .hljs-link {
+  color: #a5d6ff;
+}
+
+html[data-theme="dark"] .hljs-symbol,
+html[data-theme="dark"] .hljs-bullet {
+  color: #ffa657;
+}
+
+html[data-theme="dark"] .hljs-built_in,
+html[data-theme="dark"] .hljs-builtin-name {
+  color: #ffa657;
+}
+
+html[data-theme="dark"] .hljs-meta {
+  color: #8b949e;
+}
+
+html[data-theme="dark"] .hljs-emphasis {
+  font-style: italic;
+}
+
+html[data-theme="dark"] .hljs-strong {
+  font-weight: bold;
+}
+
+html[data-theme="dark"] .hljs-addition {
+  color: #7ee787;
+  background-color: rgba(46, 160, 67, 0.15);
+}
+
+html[data-theme="dark"] .hljs-deletion {
+  color: #ffa198;
+  background-color: rgba(248, 81, 73, 0.15);
+}
