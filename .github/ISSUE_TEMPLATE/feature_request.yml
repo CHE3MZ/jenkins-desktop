@@ -1,0 +1,48 @@
+name: Feature request
+description: Suggest an idea or improvement
+title: "[feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea! A quick look at the [roadmap](https://github.com/CHE3MZ/jenkins-desktop/tree/master/docs/docs/contributing.md#current-needs) first is appreciated — it may already be planned.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: What can't you (or others) do today?
+      placeholder: I run Jenkins on Linux and the app doesn't find my installation...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What are you proposing?
+      description: Your idea of how it should work. Sketches and mockups welcome.
+      placeholder: Auto-detect distro package installs the same way Homebrew paths are handled...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part of the project does this touch?
+      multiple: true
+      options:
+        - Backend (Go process management)
+        - Frontend (splash screen / UI)
+        - Packaging (DMG, installer, code signing)
+        - Platforms (Windows, Linux, other Jenkins installs)
+        - Docs / website
+        - Something else
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other ways to solve it, and why this proposal is better. Optional but helpful.

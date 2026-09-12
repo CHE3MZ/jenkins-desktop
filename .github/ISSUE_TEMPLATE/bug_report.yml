@@ -1,0 +1,82 @@
+name: Bug report
+description: Something isn't working as expected
+title: "[bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! The more detail you give here, the faster this can be fixed.
+        If you haven't already, check the [troubleshooting docs](https://github.com/CHE3MZ/jenkins-desktop/tree/master/docs/docs/troubleshooting.md) — your answer might already be there.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you see, and what did you expect instead?
+      placeholder: The splash screen says "Jenkins exited unexpectedly" right after launch...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: How can someone else trigger this?
+      placeholder: |
+        1. Open Jenkins Desktop with no Jenkins running
+        2. Wait for the splash screen
+        3. ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: jenkins-state
+    attributes:
+      label: How was Jenkins running?
+      description: This decides whether the app owns Jenkins or just attaches to it.
+      options:
+        - The app started Jenkins itself
+        - Jenkins was already running (started by me)
+        - Jenkins via brew services
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      description: Release tag (e.g. v0.1.0), or commit hash if you built from source.
+      placeholder: v0.1.0
+
+  - type: input
+    id: jenkins-version
+    attributes:
+      label: Jenkins version
+      description: Output of `jenkins --version`, plus how Jenkins is installed (Homebrew, another package manager, manual...).
+      placeholder: 2.581 via Homebrew
+
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS version
+      description: e.g. Tahoe 26.1, Apple Silicon / Intel.
+      placeholder: macOS 26.1, M1
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Anything shown on the error screen, plus the Jenkins output (splash screen → View logs). Paste between the fences.
+      render: text
+      placeholder: |
+        Paste relevant log output here.
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Custom JENKINS_* variables, screenshots, guesses — all welcome.

@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://github.com/CHE3MZ/jenkins-desktop/tree/master/docs
+    about: Start here — setup, configuration, troubleshooting, and how the app works.
+  - name: Question / discussion
+    url: https://github.com/CHE3MZ/jenkins-desktop/issues/new
+    about: Not a bug or a feature? Just open a blank issue and ask.
