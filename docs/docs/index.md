@@ -4,6 +4,8 @@
 
 A desktop wrapper for Jenkins. The app launches the system `jenkins` command, owns the process, and displays the Jenkins web UI in a native window — no browser tab required.
 
+<img src="images/screenshot.png" alt="screenshot" width="900" />
+
 ## How it behaves
 
 - **If Jenkins isn't running**, the app starts it, shows a splash screen while it boots, then hands the window over to Jenkins at `http://localhost:8080`.
