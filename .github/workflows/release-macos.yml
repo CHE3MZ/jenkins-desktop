@@ -59,7 +59,7 @@ jobs:
         run: |
           cd build/bin
           rm -f *.dmg
-          create-dmg 'Jenkins Desktop.app' --overwrite --no-version-in-filename --no-code-sign --dmg-title="Jenkins-Desktop"
+          create-dmg 'Jenkins Desktop.app' --overwrite --no-version-in-filename --no-code-sign --dmg-title=JenkinsDesktop
           ls -la *.dmg
 
       - name: Determine version
@@ -110,4 +110,4 @@ jobs:
           TAG='${{ steps.version.outputs.tag }}'
           git tag "$TAG"
           git push origin "$TAG"
-          gh release create "$TAG" --title "$TAG" --generate-notes "build/bin/Jenkins-Desktop.dmg"
+          gh release create "$TAG" --title "$TAG" --generate-notes "build/bin/JenkinsDesktop.dmg"
