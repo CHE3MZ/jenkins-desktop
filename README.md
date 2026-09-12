@@ -2,11 +2,13 @@
 
 # Jenkins Desktop
 
-### A simple desktop wrapper for Jenkins. 
+### __A simple desktop wrapper for Jenkins.__
 
-#### Jenkins Desktop is a simple desktop wrapper for Jenkins that is currently compatible with Homebrew installations of Jenkins on macOS.
+Jenkins Desktop is a simple desktop wrapper for Jenkins that is currently compatible with Homebrew installations of Jenkins on macOS.
 
 #### __Check out the [official documentation](https://che3mz.github.io/jenkins-desktop/) to get started.__ 
+
+<img src="docs/docs/images/screenshot.png" alt="screenshot" width="900" />
 
 ## What it does
 
