@@ -32,3 +32,10 @@ jobs:
         env:
           CGO_LDFLAGS: -framework UniformTypeIdentifiers
         run: wails build
+
+      - name: Upload app artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Jenkins Desktop-macOS
+          path: build/bin/Jenkins Desktop.app
+          if-no-files-found: error
