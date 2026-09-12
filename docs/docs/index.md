@@ -21,5 +21,7 @@ For long builds, the recommended setup is to run Jenkins independently (e.g. `br
 - **Configuration**
     - [Options & Ports](configuration.md) — environment variables and ports
     - [Troubleshooting](troubleshooting.md) — common problems and fixes
+- **Project**
+    - [Contributing](contributing.md) — conventions, roadmap, current needs
 
 > **Compatibility:** built and tested on macOS with the Homebrew Jenkins installation. The Go code also compiles for Windows, but there is usually no `jenkins` command on `PATH` there — see [Configuration](configuration.md#windows-notes).

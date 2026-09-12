@@ -8,7 +8,7 @@
 
 #### __Check out the [official documentation](https://che3mz.github.io/jenkins-desktop/) to get started.__ 
 
----
+## What it does
 
 The application upon launch will attempt to run the "jenkins" command and open up the localhost URL of Jenkins and display it to the user. If Jenkins is already running, it will skip the first part (trying to run the Jenkins command).
 
@@ -22,6 +22,12 @@ brew services start jenkins
 
 in your terminal and you won't have to worry about Jenkins (probably), as it will keep on running in the background and will be managed by the brew services service.
 you could also run the "jenkins" command directly in your terminal, but that would mean that you'd have to keep the terminal tab open in order to keep Jenkins running, as closing the tab would also kill the Jenkins process.
+
+## Contributing 
+
+Check out the **[Contribution guide in the docs](docs/docs/contributing.md)** *or* **[In the website](https://che3mz.github.io/jenkins-desktop/contributing/)**.
+
+**Any and all contributions are welcome! 😁**
 
 ## License
 
