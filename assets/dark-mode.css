@@ -1,0 +1,495 @@
+/* Dark mode for the docs site. Activated by setting
+   data-theme="dark" on <html> (see assets/dark-mode.js).
+   The theme directory itself is untouched. */
+
+html[data-theme="dark"] body {
+  background-color: #242424;
+  color: #d4d4d4;
+}
+
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4,
+html[data-theme="dark"] h5,
+html[data-theme="dark"] h6 {
+  color: #ededed;
+}
+
+html[data-theme="dark"] a {
+  color: #7aa3cc;
+}
+
+html[data-theme="dark"] a:hover,
+html[data-theme="dark"] a:focus {
+  color: #9cc3e8;
+}
+
+html[data-theme="dark"] hr,
+html[data-theme="dark"] footer > hr {
+  border-color: #3d3d3d;
+}
+
+html[data-theme="dark"] footer {
+  color: #9a9a9a;
+}
+
+/* Top navigation */
+html[data-theme="dark"] .navbar-default {
+  background-color: #1d1d1d;
+  border-bottom-color: #313131;
+}
+
+html[data-theme="dark"] .navbar-default .navbar-brand,
+html[data-theme="dark"] .navbar-default .navbar-nav > li > a {
+  color: #d4d4d4;
+}
+
+html[data-theme="dark"] .navbar-default .navbar-nav > li > a:hover,
+html[data-theme="dark"] .navbar-default .navbar-nav > li > a:focus,
+html[data-theme="dark"] .navbar-default .navbar-nav > .active > a,
+html[data-theme="dark"] .navbar-default .navbar-nav > .open > a {
+  color: #ffffff;
+  background-color: #313131;
+}
+
+html[data-theme="dark"] .navbar-default .navbar-toggle {
+  border-color: #3d3d3d;
+}
+
+html[data-theme="dark"] .navbar-default .navbar-toggle .icon-bar {
+  background-color: #d4d4d4;
+}
+
+html[data-theme="dark"] .dropdown-menu {
+  background-color: #2a2a2a;
+  border-color: #3d3d3d;
+}
+
+html[data-theme="dark"] .dropdown-menu > li > a {
+  color: #d4d4d4;
+}
+
+html[data-theme="dark"] .dropdown-menu > li > a:hover,
+html[data-theme="dark"] .dropdown-menu > li > a:focus {
+  color: #ffffff;
+  background-color: #3d3d3d;
+}
+
+html[data-theme="dark"] .dropdown-menu .divider {
+  background-color: #3d3d3d;
+}
+
+/* Side table of contents */
+html[data-theme="dark"] .bs-sidenav {
+  background-image: none;
+}
+
+html[data-theme="dark"] .bs-sidenav .nav > li > a {
+  color: #9a9a9a;
+}
+
+html[data-theme="dark"] .bs-sidenav .nav > li > a:hover,
+html[data-theme="dark"] .bs-sidenav .nav > li > a:focus,
+html[data-theme="dark"] .bs-sidenav .nav > .active > a {
+  color: #ededed;
+  background-color: transparent;
+  border-right-color: #7aa3cc;
+}
+
+/* Code, wells, tables */
+html[data-theme="dark"] pre,
+html[data-theme="dark"] code,
+html[data-theme="dark"] .well,
+html[data-theme="dark"] .btn-default {
+  background-color: #2a2a2a;
+  border-color: #3d3d3d;
+  color: #d4d4d4;
+}
+
+html[data-theme="dark"] .table-striped > tbody > tr:nth-child(2n+1) > td,
+html[data-theme="dark"] .table-striped > tbody > tr:nth-child(2n+1) > th {
+  background-color: #282828;
+}
+
+html[data-theme="dark"] .table > thead > tr > th,
+html[data-theme="dark"] .table > tbody > tr > td,
+html[data-theme="dark"] .table > tbody > tr > th {
+  border-color: #3d3d3d;
+}
+
+html[data-theme="dark"] blockquote {
+  border-left-color: #3d3d3d;
+  color: #9a9a9a;
+}
+
+html[data-theme="dark"] kbd {
+  background-color: #2a2a2a;
+  color: #d4d4d4;
+  box-shadow: inset 0 -1px 0 #3d3d3d;
+}
+
+/* Search modal */
+html[data-theme="dark"] .modal-content {
+  background-color: #2a2a2a;
+  border-color: #3d3d3d;
+  color: #d4d4d4;
+}
+
+html[data-theme="dark"] .modal-header,
+html[data-theme="dark"] .modal-footer {
+  border-color: #3d3d3d;
+}
+
+html[data-theme="dark"] .modal-content .close {
+  color: #d4d4d4;
+  opacity: 0.7;
+}
+
+html[data-theme="dark"] #mkdocs-search-query {
+  color: #ededed;
+  background-color: #242424;
+  border-color: #3d3d3d;
+}
+
+html[data-theme="dark"] .modal-body a {
+  color: #7aa3cc;
+}
+
+/* Syntax highlighting (overrides the light github theme) */
+html[data-theme="dark"] .hljs {
+  color: #d4d4d4;
+  background: transparent;
+}
+
+html[data-theme="dark"] .hljs-comment,
+html[data-theme="dark"] .hljs-quote {
+  color: #9a9a9a;
+  font-style: italic;
+}
+
+html[data-theme="dark"] .hljs-keyword,
+html[data-theme="dark"] .hljs-selector-tag,
+html[data-theme="dark"] .hljs-subst {
+  color: #ff7b72;
+}
+
+html[data-theme="dark"] .hljs-number,
+html[data-theme="dark"] .hljs-literal,
+html[data-theme="dark"] .hljs-variable,
+html[data-theme="dark"] .hljs-template-variable,
+html[data-theme="dark"] .hljs-tag .hljs-attr {
+  color: #8ba3b8;
+}
+
+html[data-theme="dark"] .hljs-string,
+html[data-theme="dark"] .hljs-doctag {
+  color: #9fb3c8;
+}
+
+html[data-theme="dark"] .hljs-title,
+html[data-theme="dark"] .hljs-section,
+html[data-theme="dark"] .hljs-selector-id {
+  color: #d2a8ff;
+}
+
+html[data-theme="dark"] .hljs-type,
+html[data-theme="dark"] .hljs-class .hljs-title {
+  color: #ffa657;
+}
+
+html[data-theme="dark"] .hljs-tag,
+html[data-theme="dark"] .hljs-name,
+html[data-theme="dark"] .hljs-attribute {
+  color: #7ee787;
+}
+
+html[data-theme="dark"] .hljs-regexp,
+html[data-theme="dark"] .hljs-link {
+  color: #9fb3c8;
+}
+
+html[data-theme="dark"] .hljs-symbol,
+html[data-theme="dark"] .hljs-bullet {
+  color: #ffa657;
+}
+
+html[data-theme="dark"] .hljs-built_in,
+html[data-theme="dark"] .hljs-builtin-name {
+  color: #ffa657;
+}
+
+html[data-theme="dark"] .hljs-meta {
+  color: #9a9a9a;
+}
+
+html[data-theme="dark"] .hljs-emphasis {
+  font-style: italic;
+}
+
+html[data-theme="dark"] .hljs-strong {
+  font-weight: bold;
+}
+
+html[data-theme="dark"] .hljs-addition {
+  color: #7ee787;
+  background-color: rgba(46, 160, 67, 0.15);
+}
+
+html[data-theme="dark"] .hljs-deletion {
+  color: #ffa198;
+  background-color: rgba(248, 81, 73, 0.15);
+}
+
+/* OS-preference mirror of the rules above. Applies the same dark palette
+   via prefers-color-scheme when no explicit choice is stored, so it takes
+   effect on first paint with zero JavaScript (no theme flash). The
+   :not([data-theme]) guard means these rules never fight an explicit
+   stored choice (explicit dark/light always wins by attribute presence).
+   To regenerate after editing the rules above: duplicate them below,
+   replacing the html[data-theme="dark"] qualifier with
+   html:not([data-theme]), inside the @media block. */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode for the docs site. Activated by setting
+     data-theme="dark" on <html> (see assets/dark-mode.js).
+     The theme directory itself is untouched. */
+
+  html:not([data-theme]) body {
+    background-color: #242424;
+    color: #d4d4d4;
+  }
+
+  html:not([data-theme]) h1,
+  html:not([data-theme]) h2,
+  html:not([data-theme]) h3,
+  html:not([data-theme]) h4,
+  html:not([data-theme]) h5,
+  html:not([data-theme]) h6 {
+    color: #ededed;
+  }
+
+  html:not([data-theme]) a {
+    color: #7aa3cc;
+  }
+
+  html:not([data-theme]) a:hover,
+  html:not([data-theme]) a:focus {
+    color: #9cc3e8;
+  }
+
+  html:not([data-theme]) hr,
+  html:not([data-theme]) footer > hr {
+    border-color: #3d3d3d;
+  }
+
+  html:not([data-theme]) footer {
+    color: #9a9a9a;
+  }
+
+  /* Top navigation */
+  html:not([data-theme]) .navbar-default {
+    background-color: #1d1d1d;
+    border-bottom-color: #313131;
+  }
+
+  html:not([data-theme]) .navbar-default .navbar-brand,
+  html:not([data-theme]) .navbar-default .navbar-nav > li > a {
+    color: #d4d4d4;
+  }
+
+  html:not([data-theme]) .navbar-default .navbar-nav > li > a:hover,
+  html:not([data-theme]) .navbar-default .navbar-nav > li > a:focus,
+  html:not([data-theme]) .navbar-default .navbar-nav > .active > a,
+  html:not([data-theme]) .navbar-default .navbar-nav > .open > a {
+    color: #ffffff;
+    background-color: #313131;
+  }
+
+  html:not([data-theme]) .navbar-default .navbar-toggle {
+    border-color: #3d3d3d;
+  }
+
+  html:not([data-theme]) .navbar-default .navbar-toggle .icon-bar {
+    background-color: #d4d4d4;
+  }
+
+  html:not([data-theme]) .dropdown-menu {
+    background-color: #2a2a2a;
+    border-color: #3d3d3d;
+  }
+
+  html:not([data-theme]) .dropdown-menu > li > a {
+    color: #d4d4d4;
+  }
+
+  html:not([data-theme]) .dropdown-menu > li > a:hover,
+  html:not([data-theme]) .dropdown-menu > li > a:focus {
+    color: #ffffff;
+    background-color: #3d3d3d;
+  }
+
+  html:not([data-theme]) .dropdown-menu .divider {
+    background-color: #3d3d3d;
+  }
+
+  /* Side table of contents */
+  html:not([data-theme]) .bs-sidenav {
+    background-image: none;
+  }
+
+  html:not([data-theme]) .bs-sidenav .nav > li > a {
+    color: #9a9a9a;
+  }
+
+  html:not([data-theme]) .bs-sidenav .nav > li > a:hover,
+  html:not([data-theme]) .bs-sidenav .nav > li > a:focus,
+  html:not([data-theme]) .bs-sidenav .nav > .active > a {
+    color: #ededed;
+    background-color: transparent;
+    border-right-color: #7aa3cc;
+  }
+
+  /* Code, wells, tables */
+  html:not([data-theme]) pre,
+  html:not([data-theme]) code,
+  html:not([data-theme]) .well,
+  html:not([data-theme]) .btn-default {
+    background-color: #2a2a2a;
+    border-color: #3d3d3d;
+    color: #d4d4d4;
+  }
+
+  html:not([data-theme]) .table-striped > tbody > tr:nth-child(2n+1) > td,
+  html:not([data-theme]) .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: #282828;
+  }
+
+  html:not([data-theme]) .table > thead > tr > th,
+  html:not([data-theme]) .table > tbody > tr > td,
+  html:not([data-theme]) .table > tbody > tr > th {
+    border-color: #3d3d3d;
+  }
+
+  html:not([data-theme]) blockquote {
+    border-left-color: #3d3d3d;
+    color: #9a9a9a;
+  }
+
+  html:not([data-theme]) kbd {
+    background-color: #2a2a2a;
+    color: #d4d4d4;
+    box-shadow: inset 0 -1px 0 #3d3d3d;
+  }
+
+  /* Search modal */
+  html:not([data-theme]) .modal-content {
+    background-color: #2a2a2a;
+    border-color: #3d3d3d;
+    color: #d4d4d4;
+  }
+
+  html:not([data-theme]) .modal-header,
+  html:not([data-theme]) .modal-footer {
+    border-color: #3d3d3d;
+  }
+
+  html:not([data-theme]) .modal-content .close {
+    color: #d4d4d4;
+    opacity: 0.7;
+  }
+
+  html:not([data-theme]) #mkdocs-search-query {
+    color: #ededed;
+    background-color: #242424;
+    border-color: #3d3d3d;
+  }
+
+  html:not([data-theme]) .modal-body a {
+    color: #7aa3cc;
+  }
+
+  /* Syntax highlighting (overrides the light github theme) */
+  html:not([data-theme]) .hljs {
+    color: #d4d4d4;
+    background: transparent;
+  }
+
+  html:not([data-theme]) .hljs-comment,
+  html:not([data-theme]) .hljs-quote {
+    color: #9a9a9a;
+    font-style: italic;
+  }
+
+  html:not([data-theme]) .hljs-keyword,
+  html:not([data-theme]) .hljs-selector-tag,
+  html:not([data-theme]) .hljs-subst {
+    color: #ff7b72;
+  }
+
+  html:not([data-theme]) .hljs-number,
+  html:not([data-theme]) .hljs-literal,
+  html:not([data-theme]) .hljs-variable,
+  html:not([data-theme]) .hljs-template-variable,
+  html:not([data-theme]) .hljs-tag .hljs-attr {
+    color: #8ba3b8;
+  }
+
+  html:not([data-theme]) .hljs-string,
+  html:not([data-theme]) .hljs-doctag {
+    color: #9fb3c8;
+  }
+
+  html:not([data-theme]) .hljs-title,
+  html:not([data-theme]) .hljs-section,
+  html:not([data-theme]) .hljs-selector-id {
+    color: #d2a8ff;
+  }
+
+  html:not([data-theme]) .hljs-type,
+  html:not([data-theme]) .hljs-class .hljs-title {
+    color: #ffa657;
+  }
+
+  html:not([data-theme]) .hljs-tag,
+  html:not([data-theme]) .hljs-name,
+  html:not([data-theme]) .hljs-attribute {
+    color: #7ee787;
+  }
+
+  html:not([data-theme]) .hljs-regexp,
+  html:not([data-theme]) .hljs-link {
+    color: #9fb3c8;
+  }
+
+  html:not([data-theme]) .hljs-symbol,
+  html:not([data-theme]) .hljs-bullet {
+    color: #ffa657;
+  }
+
+  html:not([data-theme]) .hljs-built_in,
+  html:not([data-theme]) .hljs-builtin-name {
+    color: #ffa657;
+  }
+
+  html:not([data-theme]) .hljs-meta {
+    color: #9a9a9a;
+  }
+
+  html:not([data-theme]) .hljs-emphasis {
+    font-style: italic;
+  }
+
+  html:not([data-theme]) .hljs-strong {
+    font-weight: bold;
+  }
+
+  html:not([data-theme]) .hljs-addition {
+    color: #7ee787;
+    background-color: rgba(46, 160, 67, 0.15);
+  }
+
+  html:not([data-theme]) .hljs-deletion {
+    color: #ffa198;
+    background-color: rgba(248, 81, 73, 0.15);
+  }
+}

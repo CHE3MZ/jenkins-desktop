@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Documentation for Jenkins Desktop, a desktop wrapper that runs Jenkins and displays it in a native window.">
+    <meta name="author" content="CHE3MZ">
+    <link rel="canonical" href="https://che3mz.github.io/jenkins-desktop/how-it-works/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>How It Works - Jenkins Desktop</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+    <link href="../assets/dark-mode.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">Jenkins Desktop</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Getting Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../getting-started/">Installation</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../building/">Building from Source</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">How It Works</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../configuration/">Options & Ports</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../troubleshooting/">Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../contributing/">Contributing</a>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/CHE3MZ/jenkins-desktop/edit/master/docs/how-it-works.md"><i class="fab fa-github"></i> View on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#how-it-works">How It Works</a></li>
+            <li class="second-level"><a href="#backend-lifecycle-appgo">Backend lifecycle (app.go)</a></li>
+                
+                <li class="third-level"><a href="#finding-jenkins">Finding Jenkins</a></li>
+            <li class="second-level"><a href="#frontend-handoff-frontendsrcappvue">Frontend handoff (frontend/src/App.vue)</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="how-it-works">How It Works</h1>
+<h2 id="backend-lifecycle-appgo">Backend lifecycle (<code>app.go</code>)</h2>
+<ol>
+<li><strong>Locate Jenkins.</strong> The app first ensures the Homebrew binary locations are on its own <code>PATH</code> (Finder-launched apps don't inherit the shell <code>PATH</code>), then resolves <code>JENKINS_COMMAND</code> via <code>exec.LookPath</code>.</li>
+<li><strong>Probe the port.</strong> <code>GET http://localhost:&lt;port&gt;/login</code> decides between spawning a new Jenkins, attaching to a running one, or showing an error — see <a href="../configuration/#startup-rules">Configuration</a>.</li>
+<li><strong>Own the process.</strong> The child runs in its own process group so shutdown signals reach the whole tree. Stdout/stderr stream into a 500-line in-memory ring buffer exposed to the UI.</li>
+<li><strong>Wait for readiness.</strong> Jenkins answers HTTP 503 while booting and 200 once ready. The backend polls every 500ms and reports <code>starting</code> / <code>ready</code> / <code>error</code> states, also emitting <code>jenkins:state</code> / <code>jenkins:ready</code> events.</li>
+<li><strong>Shut down.</strong> On app close, Wails calls <code>OnShutdown</code>: SIGTERM to the process group, up to 15s grace for Jenkins's own orderly shutdown, then SIGKILL. Attached (foreign) instances are never signalled.</li>
+</ol>
+<h3 id="finding-jenkins">Finding Jenkins</h3>
+<p><code>wails dev</code> inherits the terminal <code>PATH</code>, but a <code>.app</code> opened from Finder gets the system default (<code>/usr/bin:/bin:/usr/sbin:/sbin</code>), where Homebrew is invisible. That is why the same code can work in dev and report "command not found" once packaged. The fix is local to the process: <code>ensureGuiPath()</code> prepends <code>/opt/homebrew/bin</code> and <code>/usr/local/bin</code> when they exist. It modifies nothing on the system — process environment only.</p>
+<h2 id="frontend-handoff-frontendsrcappvue">Frontend handoff (<code>frontend/src/App.vue</code>)</h2>
+<p>The UI is a splash screen that polls <code>JenkinsState()</code> and, once ready, hands the entire window to Jenkins with <code>window.location.replace(url)</code>.</p>
+<p>An <code>&lt;iframe&gt;</code> embed is not possible: Jenkins sends <code>X-Frame-Options: sameorigin</code>, which blocks framing from the Wails frontend origin. A top-level navigation has no such restriction and displays Jenkins natively.</p>
+<p>The splash styling mirrors Jenkins's own boot page (<code>HudsonIsLoading</code>) and components (<code>.jenkins-spinner</code>, <code>.app-progress-bar</code>) from the upstream repo, using the same light-theme tokens.</p></div>
+        
+        
+    </div>
+
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="../assets/dark-mode.js"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>

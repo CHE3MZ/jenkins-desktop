@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Documentation for Jenkins Desktop, a desktop wrapper that runs Jenkins and displays it in a native window.">
+    <meta name="author" content="CHE3MZ">
+    <link rel="canonical" href="https://che3mz.github.io/jenkins-desktop/contributing/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Contributing - Jenkins Desktop</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
+    <link href="../assets/dark-mode.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">Jenkins Desktop</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Getting Started <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../getting-started/">Installation</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../building/">Building from Source</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../how-it-works/">How It Works</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Configuration <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../configuration/">Options & Ports</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../troubleshooting/">Troubleshooting</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="active">
+                        <a href="./">Contributing</a>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/CHE3MZ/jenkins-desktop/edit/master/docs/contributing.md"><i class="fab fa-github"></i> View on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#contributing">Contributing</a></li>
+            <li class="second-level"><a href="#development-setup">Development setup</a></li>
+                
+            <li class="second-level"><a href="#conventions">Conventions</a></li>
+                
+            <li class="second-level"><a href="#current-needs">Current needs</a></li>
+                
+                <li class="third-level"><a href="#1-proper-windows-support">1. Proper Windows support</a></li>
+                <li class="third-level"><a href="#2-more-jenkins-install-sources">2. More Jenkins install sources</a></li>
+                <li class="third-level"><a href="#3-linux-support">3. Linux support</a></li>
+                <li class="third-level"><a href="#4-code-signing-and-notarization">4. Code signing and notarization</a></li>
+                <li class="third-level"><a href="#5-tests">5. Tests</a></li>
+                <li class="third-level"><a href="#6-update-mechanism">6. Update mechanism</a></li>
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="contributing">Contributing</h1>
+<p>All contributions are welcome — code, documentation, testing, and bug reports. The repository lives at <a href="https://github.com/CHE3MZ/jenkins-desktop">CHE3MZ/jenkins-desktop</a>; please open an issue there before large changes so design can be agreed up front.</p>
+<h2 id="development-setup">Development setup</h2>
+<ul>
+<li>Go (see <code>go.mod</code>), <a href="https://bun.sh">Bun</a>, <a href="https://wails.io">Wails v2</a></li>
+<li><code>wails dev</code> for live development with hot reload</li>
+<li><code>./scripts/build-macos.sh</code> for packaged builds</li>
+<li>Set <code>const debugSplash = true</code> in <code>app.go</code> to iterate on the splash screen without starting Jenkins (remember to set it back)</li>
+</ul>
+<p>Every push to <code>master</code> runs the <code>build-macos</code> workflow, and successful builds are kept as artifacts — a green run is the minimum bar for a change.</p>
+<h2 id="conventions">Conventions</h2>
+<ul>
+<li>Go code must be <code>gofmt</code>-clean and pass <code>go vet</code> plus <code>golangci-lint</code> with zero issues.</li>
+<li>Keep the splash screen visually consistent with upstream Jenkins (design tokens and components are copied from <code>reference/</code>). Don't touch <code>docs/theme/</code> — the docs theme is fixed.</li>
+<li>Don't commit build output (<code>build/bin</code>, <code>frontend/dist</code>), <code>node_modules</code>, or the <code>reference/</code> upstream copy — all are git-ignored.</li>
+</ul>
+<h2 id="current-needs">Current needs</h2>
+<p>These are the areas where help matters most, roughly ordered by impact:</p>
+<h3 id="1-proper-windows-support">1. Proper Windows support</h3>
+<p>The backend compiles for Windows (<code>GOOS=windows go build</code> passes) and <code>JENKINS_COMMAND</code>/<code>JENKINS_ARGS</code> already allow pointing at a Windows launcher, but it has never been tested on a real Windows machine. Needed: verify startup/attach/shutdown against a local Jenkins (service install and <code>java -jar jenkins.war</code>), confirm WebView2 behavior for the localhost handoff, and figure out the installer story.</p>
+<h3 id="2-more-jenkins-install-sources">2. More Jenkins install sources</h3>
+<p>Startup currently assumes a <code>jenkins</code> executable on <code>PATH</code> (plus hardcoded Homebrew fallback dirs). It should detect more layouts automatically:</p>
+<ul>
+<li><strong>Linux:</strong> distro packages (<code>apt</code>/<code>dnf</code> installs), the standalone <code>jenkins.war</code></li>
+<li><strong>Windows:</strong> Winget, Chocolatey, Scoop installs, Windows service detection</li>
+<li><strong>macOS:</strong> MacPorts and manual installs beyond Homebrew</li>
+<li>Possibly: a Jenkins running in Docker (port probe already handles the attach half; discovery is the missing piece)</li>
+</ul>
+<p>The natural shape is extending the <code>ensureGuiPath</code> idea per-OS: a list of known install locations probed before falling back to <code>PATH</code>.</p>
+<h3 id="3-linux-support">3. Linux support</h3>
+<p>Same story as Windows: expected to mostly work (process-group code is shared Unix), but untested — needs dependency docs (WebKitGTK), a smoke test, and likely small fixes.</p>
+<h3 id="4-code-signing-and-notarization">4. Code signing and notarization</h3>
+<p>Releases are currently ad-hoc signed, which means Gatekeeper warnings on other people's Macs. Needed: an Apple Developer ID workflow (certificates as CI secrets, <code>notarytool</code> stapling) wired into <code>release-macos</code>.</p>
+<h3 id="5-tests">5. Tests</h3>
+<p>There are none yet. Valuable starting points: unit tests for the probe/state machine in <code>app.go</code> (port validation, attach-vs-spawn decisions with a fake HTTP server) and component tests for the splash screen states.</p>
+<h3 id="6-update-mechanism">6. Update mechanism</h3>
+<p>Right now updating means downloading a new DMG from Releases. Options worth exploring: an in-app update check against the GitHub Releases API, or publishing via Homebrew Cask.</p></div>
+        
+        
+    </div>
+
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="../assets/dark-mode.js"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>
